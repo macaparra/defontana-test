@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError } from 'rxjs';
+import { Observable, catchError, config } from 'rxjs';
 import { environment } from '../../enviroments/environment.prod';
 import { throwError } from 'rxjs';
 
@@ -14,69 +14,52 @@ export class SpotifyService {
   constructor(private _HttpClient:HttpClient){}
 
   getToken(): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/x-www-form-urlencoded',
-      Authorization: 'Basic ' + btoa(environment.clientId + ':' + environment.clientSecret)
+    return new Observable((observer) => {
+   fetch("https://accounts.spotify.com/api/token", {
+      body: `grant_type=client_credentials&client_id=${'52cd2946efdd498088a6e1d6248e048d'}&client_secret=${'ccfd3d275730499ab0b49906f8ceb174'}`,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      method: "POST"
+    }) .then((response) => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = response.json();
+      return data;
+    })
+    .then((data) => {
+      observer.next(data);
+      observer.complete();
+    })
+    .catch((error) => {
+      observer.error(error);
     });
-  
-    const body = new HttpParams()
-      .set('grant_type', 'authorization_code')
-      .set('client_id', environment.clientId)
-      .set('redirect_uri', environment.redirectUri);
-  
-    return this._HttpClient.post('https://accounts.spotify.com/api/token', body.toString(), { headers }).pipe(
-      catchError((error) => {
-        console.error('Error while getting token:', error);
-        return throwError(error);
-      })
-    );
+  });
   }
   
   getEntities(name:string, offset=0, limit=10):Observable<any>{
-    return this._HttpClient.get(`${this.url}/search?q=${name}&type=artist&offset=${offset}&limit=${limit}`,{
-      headers:{
-        "Authorization": `Bearer  ${environment.access_token}`
-      }
-    });
+    const data = this._HttpClient.get(`${this.url}/search?q=${name}&type=artist&offset=${offset}&limit=${limit}`);
+    return data;
   }
 
   getArtist(id:string):Observable<any>{
-    return this._HttpClient.get(`${this.url}/artists/${id}`,{
-      headers:{
-        "Authorization": `Bearer  ${environment.access_token}`
-      }
-    });
+    return this._HttpClient.get(`${this.url}/artists/${id}`);
   }
 
   getArtistAlbums(id: string): Observable<any> {
-    return this._HttpClient.get(`${this.url}/artists/${id}/albums?limit=10`, {
-      headers: {
-        "Authorization": `Bearer  ${environment.access_token}`
-      }
-    });
+    return this._HttpClient.get(`${this.url}/artists/${id}/albums?limit=10`);
   }
 
   getArtistTopTracks(id: string): Observable<any> {
-    return this._HttpClient.get(`${this.url}/artists/${id}/top-tracks?country=US`, {
-      headers: {
-        "Authorization": `Bearer  ${environment.access_token}`
-      }
-    });
+    return this._HttpClient.get(`${this.url}/artists/${id}/top-tracks?country=US`);
   }
 
   getAlbumDetails(albumId: string): Observable<any> {
-    return this._HttpClient.get(`${this.url}/albums/${albumId}`, {
-      headers: {
-        "Authorization": `Bearer  ${environment.access_token}`
-      }
-    });
+    return this._HttpClient.get(`${this.url}/albums/${albumId}`);
   }
 
   getTrackDetails(trackId: string): Observable<any> {
-    return this._HttpClient.get(`${this.url}/tracks/${trackId}`, {
-      headers: {
-        "Authorization": `Bearer  ${environment.access_token}`
-      }
-    });
+    return this._HttpClient.get(`${this.url}/tracks/${trackId}`);
   }
 }
