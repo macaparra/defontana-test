@@ -1,0 +1,85 @@
+<div class="artist-detail-container" *ngIf="artistDetails">
+    <div class="spotify-logo-container">
+        <a routerLink="/"> 
+            <img src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_RGB_Green.png" alt="Logo de Spotify" class="spotify-logo">
+        </a>
+    </div>
+    <div class="artist-header">
+        <img [src]="artistDetails.images[0]?.url" alt="Imagen del artista">
+        <div class="artist-info">
+            <h2>{{ artistDetails.name }}</h2>
+            <button class="add-album-button" (click)="toggleAddAlbumForm()">Agregar Disco</button>
+        </div>
+    </div>
+    
+    <div class="add-album-form" *ngIf="showAddAlbumForm">
+        <form [formGroup]="addAlbumForm" (ngSubmit)="addAlbum()">
+            <label for="title">Título:</label>
+            <input type="text" id="title" formControlName="title" required placeholder="Ingrese el título del álbum">
+    
+            <label for="year">Año:</label>
+            <input type="number" id="year" formControlName="year" required placeholder="Ingrese el año de lanzamiento">
+    
+            <label for="imageUrl">URL de la imagen:</label>
+            <input type="text" id="imageUrl" formControlName="imageUrl"requiredplaceholder="Ingrese la URL de la imagen del álbum">
+    
+            <button type="submit" [disabled]="addAlbumForm.invalid">Agregar Disco</button>
+        </form>
+    </div>
+    
+    <div class="top-tracks-section">
+        <br><br><h3>Top 10 de Canciones</h3><br><br>
+        <ul class="top-tracks-list">
+            <li *ngFor="let track of artistTopTracks" class="top-track-item">
+                <div (click)="onSelectTrack(track.id)" [ngClass]="{'selected-track': isSelectedTrack(track.id)}">
+                    <img *ngIf="track.album.images.length > 0" [src]="track.album.images[0]?.url" alt="Album Cover" class="top-track-image">
+                    <div class="top-track-info">
+                        <span class="top-track-name">{{ track.name }}</span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="selected-track-details" *ngIf="selectedTrackDetails">
+        <h4>Detalle de la Canción Seleccionada</h4>
+        <p>Nombre: {{ selectedTrackDetails.name }}</p>
+        <p>Artista: {{ selectedTrackDetails.artists[0].name }}</p>
+        <p>Álbum: {{ selectedTrackDetails.album.name }}</p>
+        <p>Duración: {{ selectedTrackDetails.duration_ms | date:'mm:ss' }}</p>
+
+        <img *ngIf="selectedTrackDetails.album.images.length > 0" [src]="selectedTrackDetails.album.images[0]?.url" alt="Imagen de la canción">
+    </div>
+    <br><br>
+    <div class="albums-section">
+        <h3>Top Discos</h3><br><br>
+        <ul class="albums-list">
+            <li *ngFor="let album of artistAlbums; let i = index" class="album-item">
+                <div (click)="onSelectAlbum(album.id, i)" [ngClass]="{'selected-album': list.includes(i)}">
+                    <img *ngIf="album.images.length > 0" [src]="album.images[0]?.url" alt="Album Cover" class="album-image">
+                    <div class="album-info">
+                        <span class="album-name">{{ album.name }} <br></span>
+                        <span class="album-artists">{{ album.artists[0]?.name }}</span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="selected-album-details" *ngIf="selectedAlbumDetails || selectedAlbums.length > 0">
+        <h4>Detalle del Disco Seleccionado</h4>
+        <p>Nombre: {{ (selectedAlbumDetails?.name || selectedAlbums[0]?.name || 'Nombre no disponible') }}</p>
+        <p>Fecha de Lanzamiento: {{ (selectedAlbumDetails?.release_date || selectedAlbums[0]?.release_date || 'Fecha de lanzamiento no disponible') }}</p>
+        <p>Artista: {{ (selectedAlbumDetails?.artists[0]?.name || selectedAlbums[0]?.artists[0]?.name || 'Artista no disponible') }}</p>
+    </div>
+
+    <div class="selected-albums" *ngIf="selectedAlbums && selectedAlbums.length > 0">
+        <br><br><h3>Discos Seleccionados</h3><br><br>
+        <div *ngFor="let album of selectedAlbums">
+            <br><br>
+            <img [src]="album.images[0]?.url" alt="Imagen del álbum">
+        </div>
+    </div>
+
+
+</div>

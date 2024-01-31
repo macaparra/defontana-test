@@ -1,0 +1,293 @@
+.spotify-logo-container {
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+
+.spotify-logo {
+    width: 20%;
+    height: auto;
+}
+
+.artist-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.artist-info {
+    margin-top: 10px;
+    color: white;
+    text-align: center;
+}
+
+.artist-header img {
+    width: 200px; 
+    height: 200px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.artist-info h2 {
+    font-size: 40px;
+    margin-top: 10px;
+}
+
+.add-album-form {
+    margin-top: 20px;
+}
+
+.add-album-button {
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.add-album-button:hover {
+    background-color: white;
+    color: white;
+}
+
+// Track info
+h3 {
+    color: white;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.top-tracks-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.top-track-item {
+    width: 190px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+.top-track-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.top-track-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    object-fit: cover;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+
+.top-track-info {
+    text-align: center;
+}
+
+.top-track-name {
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.top-track-artists {
+    font-size: 14px;
+    color: #b3b3b3;
+}
+
+.selected-track-details {
+    background-color: #dbdbdb1c;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: center;
+    color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h4 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.selected-track-details img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 8px;
+    margin-top: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+//Disco
+
+.albums-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.album-item {
+    width: 190px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.album-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.album-image {
+   width: 120px;
+    height: 120px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    object-fit: cover;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+
+.album-info {
+    text-align: center;
+}
+
+.album-name {
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.album-artists {
+    font-size: 14px;
+    color: #b3b3b3;
+}
+
+.selected-album-details {
+    background-color: #dbdbdb1c;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: center;
+    color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.selected-albums {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-top: 30px;
+    gap: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.selected-albums img {
+    width: 200px;
+    height: 200px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+@media screen and (max-width: 600px) {
+    .selected-album-details {
+        max-width: 100%; 
+    }
+
+    .selected-albums {
+        flex-direction: column; 
+        align-items: center; 
+        overflow-x: hidden; 
+    }
+
+    .selected-albums img {
+        width: 100%; 
+        height: auto;
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+}
+
+
+// Agregar Disco
+.add-album-form {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.add-album-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-album-form label {
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.add-album-form input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #535353;
+    border-radius: 4px;
+    background-color: #282828;
+    color: #fff;
+}
+
+.add-album-form button {
+    background-color: #1db954;
+    border: 1px solid #1db954;
+    color: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.add-album-form button:hover {
+    background-color: #25a345;
+}

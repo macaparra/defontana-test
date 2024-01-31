@@ -1,0 +1,126 @@
+.header {
+    text-align: center;
+    margin-top: 20px;
+}
+  
+.logo {
+    width: 150px;
+    height: auto;
+}
+.categories-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 10%;
+}
+  
+.category {
+    width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  text-align: left;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-size: 22px;
+  cursor: pointer;
+  position: relative;
+
+    img {
+        width: 50%;
+        height: auto;
+        position: absolute;
+        bottom: 0;
+        left: 40%;
+        border-radius: 3%;
+        margin-bottom: 10px; 
+      }
+  
+    span {
+        font-weight: 600;
+        font-family: CircularSpTitle, CircularSpTitle-Tall, CircularSp-Arab, CircularSp-Hebr, CircularSp-Cyrl, CircularSp-Grek, CircularSp-Deva, var(--fallback-fonts, sans-serif);
+        color: white;
+    }
+}
+  
+  .music { background-color: #dc148c; }
+  .live-events { background-color: #8400e7; }
+  .made-for-you { background-color: #1e3264; }
+  .new-releases { background-color: #e8115b; }
+  .latin { background-color: #148a08; }
+  .pop { background-color: #8d67ab; }
+  
+  
+  .search-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 10%;
+  
+    input {
+      padding: 12px;
+      border: none;
+      border-radius: 20px;
+      width: 100%;
+      margin-right: 10px;
+      background-color: #242424;
+      color: white;
+      font-size: 16px;
+      
+      &:focus {
+        color: white;
+      }
+    }
+  
+    button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 20px;
+      background-color: #1db954;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+    }
+  }
+  
+  @media screen and (max-width: 1860px) {
+    .categories-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .category {
+      width: 70%;
+      height: 150px;
+      margin-bottom: 20px;
+    }
+  
+    .search-container {
+      flex-direction: column;
+      input {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+      }
+  
+      button {
+        width: 100%;
+      }
+    }
+  }
+
+  
+  @media(min-width:776px){
+    .category{
+        display: grid!important;
+        img{
+            width: auto;
+            height: 80%;
+            position: absolute;
+            bottom: 10px;
+            left: 67%;
+            border-radius: 3%;
+            margin-bottom: 10px;
+        }
+    }
+  }

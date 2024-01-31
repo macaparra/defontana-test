@@ -1,0 +1,46 @@
+<div class="header">
+    <a href="/">
+     <img class="logo" src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_RGB_Green.png" alt="Spotify Logo">
+    </a>
+</div>
+
+<form #f="ngForm" (ngSubmit)="navigate()">
+    <div class="search-container">
+      <input [(ngModel)]="name" name="name" required type="text" placeholder="Buscar artistas...">
+      <button type="submit"><i class="fas fa-search"></i> Buscar</button>
+    </div>
+</form>
+  
+<ng-container *ngIf="artists.length > 0; else showCategories">
+    <app-table [data]="artists" [search]="name"></app-table>
+</ng-container>
+
+<ng-template #showCategories>
+    <div class="categories-container">
+        <div class="category music">
+            <img src="https://i.scdn.co/image/ab67fb8200005caf474a477debc822a3a45c5acb" alt="Imagen de Music">
+            <span>Music</span>
+        </div>
+        <div class="category live-events">
+            <img src="https://concerts.spotifycdn.com/images/live-events_category-image.jpg" alt="Imagen de Live Events">
+            <span>Live Events</span>
+        </div>
+        <div class="category made-for-you">
+            <img src="https://i.scdn.co/image/ab67fb8200005cafae7e69beb88f16969641b53e" alt="Imagen de Made for You">
+            <span>Made for You</span>
+        </div>
+        <div class="category new-releases">
+            <img src="https://t.scdn.co/images/ea364e99656e46a096ea1df50f581efe" alt="Imagen de New Releases">
+            <span>New Releases</span>
+        </div>
+        <div class="category latin">
+            <img src="https://i.scdn.co/image/ab67fb8200005cafa59f90c077c9f618fd0dde30" alt="Imagen de Latin">
+            <span>Latin</span>
+        </div>
+        <div class="category pop">
+            <img src="https://i.scdn.co/image/ab67fb8200005cafa862ab80dd85682b37c4e768" alt="Imagen de Pop">
+            <span>Pop</span>
+        </div>
+    </div>
+</ng-template>
+
