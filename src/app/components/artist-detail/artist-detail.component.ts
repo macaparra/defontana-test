@@ -127,13 +127,10 @@ export class ArtistDetailComponent implements OnInit {
       artists: [{ name: this.artistDetails.name }]
     };
   
-    // Agrega el nuevo álbum al principio del array
     this.artistAlbums = [newAlbum, ...this.artistAlbums];
   
-    // Solo toma los primeros 10 álbumes
     this.artistAlbums = this.artistAlbums.slice(0, 10);
   
-    // Si hay álbumes seleccionados, actualiza la lista y detalles del álbum
     if (this.selectedAlbums.length > 0) {
       this.selectedAlbums = [newAlbum];
       this.selectedAlbumDetails = newAlbum;
